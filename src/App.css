@@ -1,6 +1,12 @@
 body {
     font-family: 'Roboto Mono' !important;
 }
+.won {
+    color: green;
+}
+.congrats {
+    font-weight: bold;
+}
 .code {
     margin-top: 2rem;
     border: solid 1px black;

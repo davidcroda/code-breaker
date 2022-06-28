@@ -41,13 +41,32 @@ const encodedQuoteState = selector({
   }
 })
 
+const winningState = selector({
+  key: 'decodedQuoteState',
+  get: ({get}) => {
+    const quotes = get(quotesState)
+    const encodedQuotes = get(encodedQuoteState)
+    const guesses = get(guessState)
+    for(const [index, quote] of quotes.entries()) {
+      const decodedQuote = encodedQuotes[index].quote.split('').map(char => {
+        if(isLetter(char)) return guesses[char.toUpperCase()]
+        return char
+      }).join('')
+      console.log(decodedQuote, quote.quote)
+      if (decodedQuote !== quote.quote.toUpperCase()) return false
+    }
+    return true
+  }
+})
+
 function App() {
+  const won = useRecoilValue(winningState)
   return (
-    <div className="container">
+    <div className='container'>
       <div className='my-3 text-center'>
         <h1 className='display-5'>Code Breaker</h1>
       </div>
-      <div className="row">
+      <div className={'row' + (won ? ' won' : '')}>
         <div class="col-8">
           <CodeContainer />
         </div>
@@ -75,7 +94,6 @@ function Code(props) {
     })
     return <div className='word'>{wordDisplay}</div>
   })
-  console.log(quotesDisplay)
   return (
     <div>
       <div className='code'>
@@ -103,6 +121,7 @@ function Letter(props) {
 
 function CodeInput() {
   const [guesses, setGuesses] = useRecoilState(guessState)
+  const won = useRecoilValue(winningState)
   const onChange = (event) => {
     const letter = event.target.getAttribute("data-letter")
     setGuesses({
@@ -120,6 +139,7 @@ function CodeInput() {
   })
   return (
     <div className='code-input'>
+      { won ? <p className='congrats'>Congrats, you got it!</p> : '' }
       <p>Fill in the letters to solve the scrambled quotes.</p>
       <ul>
         {inputs}
