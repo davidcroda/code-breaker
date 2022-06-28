@@ -29,10 +29,13 @@ const encodedQuoteState = selector({
     const encodedQuotes = []
     const code = get(codeState)
     for(const quote of quotes) {
-      encodedQuotes.push(quote.split('').map(char => {
-        if (isLetter(char)) return code[char.toUpperCase()]
-        return char
-      }))
+      encodedQuotes.push({
+        author: quote.author,
+        quote: quote.quote.split('').map(char => {
+          if (isLetter(char)) return code[char.toUpperCase()]
+          return char
+        }).join('')
+      })
     }
     return encodedQuotes
   }
@@ -41,13 +44,46 @@ const encodedQuoteState = selector({
 function App() {
   return (
     <div className="container">
-      <div className='px-4 py-5 my-5 text-center'>
-        <h1 className='display-5 fw-bold'>Code Breaker</h1>
-        <CodeContainer />
-        <CodeInput />
+      <div className='my-3 text-center'>
+        <h1 className='display-5'>Code Breaker</h1>
+      </div>
+      <div className="row">
+        <div class="col-8">
+          <CodeContainer />
+        </div>
+        <div className="col">
+          <CodeInput />
+        </div>
       </div>
     </div>
   );
+}
+
+function CodeContainer() {
+  const quotes = useRecoilValue(encodedQuoteState)
+  return quotes.map(quote => {
+    return <Code quote={quote.quote} author={quote.author} />
+  })
+}
+
+function Code(props) {
+  const guesses = useRecoilValue(guessState)
+  const words = props.quote.split(' ')
+  const quotesDisplay = words.map(word => {
+    const wordDisplay = Array.from(word).map(letter => {
+      return <Letter guess={guesses[letter]} letter={letter} />
+    })
+    return <div className='word'>{wordDisplay}</div>
+  })
+  console.log(quotesDisplay)
+  return (
+    <div>
+      <div className='code'>
+      {quotesDisplay}
+      <div className='author'>{props.author}</div>
+      </div>
+    </div>
+  )
 }
 
 function Letter(props) {
@@ -62,25 +98,6 @@ function Letter(props) {
       <div>{guess}</div>
       <div className={props.guess ? 'strike' : ''}>{props.letter}</div>
     </div>
-  )
-}
-
-function CodeContainer() {
-  const quotes = useRecoilValue(encodedQuoteState)
-  return quotes.map(quote => {
-    return <Code quote={quote} />
-  })
-}
-
-function Code(props) {
-  const guesses = useRecoilValue(guessState)
-  const quotesDisplay = []
-  const letters = Array.from(props.quote)
-  quotesDisplay.push(letters.map(letter => {
-    return <Letter guess={guesses[letter]} letter={letter} />
-  }))
-  return (
-    <div className='code col-lg-10 mx-auto'>{quotesDisplay}</div>
   )
 }
 
@@ -102,8 +119,9 @@ function CodeInput() {
     )
   })
   return (
-    <div className='code col-lg-6 mx-auto'>
-      <ul className="code-input">
+    <div className='code-input'>
+      <p>Fill in the letters to solve the scrambled quotes.</p>
+      <ul>
         {inputs}
       </ul>
     </div>

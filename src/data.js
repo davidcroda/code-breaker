@@ -2,7 +2,7 @@ import quotes from './quotes.json'
 
 const randomQuotes = []
 for(let i = 0; i < 3; i++) {
-    randomQuotes.push(quotes.quotes.splice(Math.random() * quotes.quotes.length, 1)[0].quote.trim())
+    randomQuotes.push(quotes.quotes.splice(Math.random() * quotes.quotes.length, 1)[0])
 }
 
 const state = {
