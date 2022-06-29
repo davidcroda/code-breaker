@@ -63,9 +63,7 @@ function App() {
   const won = useRecoilValue(winningState)
   return (
     <div className='container'>
-      <div className='my-3 text-center'>
-        <h1 className='display-5'>Code Breaker</h1>
-      </div>
+      <h1 className='title my-3 text-center'>Code Breaker</h1>
       <div className={'row' + (won ? ' won' : '')}>
         <div class="col-8">
           <CodeContainer />
