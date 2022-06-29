@@ -121,6 +121,10 @@ function CodeInput() {
   const [guesses, setGuesses] = useRecoilState(guessState)
   const won = useRecoilValue(winningState)
   const onChange = (event) => {
+    event.preventDefault()
+    if (event.target.value.length > 1) {
+      event.target.value = event.target.value.substr(-1, 1)
+    }
     const letter = event.target.getAttribute("data-letter")
     setGuesses({
       ...guesses,
