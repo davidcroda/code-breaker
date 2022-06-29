@@ -1,0 +1,60 @@
+body {
+  font-family: 'Roboto Mono' !important;
+  background-color: dimgray !important;
+}
+.won {
+  color: green;
+}
+.congrats {
+  font-weight: bold;
+}
+.title {
+  color: whitesmoke;
+}
+.row {
+  background-color: whitesmoke;
+}
+.code {
+  margin-top: 2rem;
+  border: solid 1px black;
+  padding: 1rem;
+  margin-bottom: -1rem;
+}
+.code-input {
+  margin-top: 2rem;
+}
+.code-input ul {
+  list-style: none;
+  padding: 0;
+}
+.author {
+  display: inline-block;
+  font-weight: 500;
+  font-size: larger;
+}
+.author::before {
+  content: '- ';
+}
+.guess {
+  width: 3rem;
+  margin-top: 1rem;
+  text-align: center;
+  display: inline-block;
+}
+.guess input {
+  width: 3rem;
+  text-align: center;
+}
+.word {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.letter-container {
+  width: 1rem;
+  display: inline-block;
+  font-weight: 500;
+}
+.strike {
+  text-decoration: line-through;
+}
