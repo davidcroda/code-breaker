@@ -13,6 +13,7 @@ body {
 }
 .row {
   background-color: whitesmoke;
+  padding-bottom: 2rem;
 }
 .code {
   margin-top: 2rem;
