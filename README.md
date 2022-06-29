@@ -1,4 +1,8 @@
 # Code Breaker
+
+![Unit Tests](https://github.com/github/docs/actions/workflows/unit-tests.yml/badge.svg?branch=main)
+
+
 Fun simple puzzle to decoded famous quotes. 3 quotes will be displayed using a scrambled alphabet, 
 ie. A = D, B = Z, etc. When you fill in a letter on the right all instances will be replaced in the
 available quotes. When you have successfully decoded all 3 quotes the font will turn green and display
