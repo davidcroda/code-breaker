@@ -1,6 +1,6 @@
 # Code Breaker
 
-![Unit Tests](https://github.com/github/docs/actions/workflows/unit-tests.yml/badge.svg?branch=main)
+[![unit-tests](https://github.com/davidcroda/code-breaker/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/davidcroda/code-breaker/actions/workflows/unit-tests.yml)
 
 
 Fun simple puzzle to decoded famous quotes. 3 quotes will be displayed using a scrambled alphabet, 
