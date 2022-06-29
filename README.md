@@ -10,6 +10,8 @@ a congratulatory message.
 
 Check it out at [https://code.daveroda.com](https://code.daveroda.com)
 
+<img width="1203" alt="Screen Shot 2022-06-29 at 5 32 35 PM" src="https://user-images.githubusercontent.com/115285/176548770-094a1b9c-5ffa-4403-a568-0ebc118fb68c.png">
+
 ## Available Scripts
 
 In the project directory, you can run:
